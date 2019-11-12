@@ -13,7 +13,7 @@ import com.inovatrend.rba_demo_streams.serde.PersonSerde;
 
 import java.util.Properties;
 
-public class CityPopulationContingApp {
+public class CityPopulationCountingApp {
 
 
     public static void main(String[] args) {
