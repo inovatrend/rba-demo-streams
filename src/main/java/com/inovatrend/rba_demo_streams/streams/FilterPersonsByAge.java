@@ -25,5 +25,9 @@ public class FilterPersonsByAge {
 
         KStream<String, Person> personStream = builder.stream("person-topic");
 
+        personStream
+                .filter((key, value) -> value.getAge() > 30)
+                .peek((key, value) -> System.out.println("Person older then 30: " + value))
+                .to("young-people");
     }
 }
