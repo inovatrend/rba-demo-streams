@@ -1,6 +1,7 @@
 package com.inovatrend.rba_demo_streams.streams;
 
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.kstream.KStream;
@@ -29,5 +30,8 @@ public class FilterPersonsByAge {
                 .filter((key, value) -> value.getAge() > 30)
                 .peek((key, value) -> System.out.println("Person older then 30: " + value))
                 .to("young-people");
+
+        KafkaStreams streams = new KafkaStreams(builder.build(), config);
+        streams.start();
     }
 }
