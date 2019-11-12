@@ -1,8 +1,11 @@
 package com.inovatrend.rba_demo_streams.streams;
 
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.kstream.KStream;
 
+import com.inovatrend.rba_demo_streams.model.Person;
 import com.inovatrend.rba_demo_streams.serde.PersonSerde;
 
 import java.util.Properties;
@@ -18,6 +21,9 @@ public class FilterPersonsByAge {
         config.put(StreamsConfig.APPLICATION_ID_CONFIG, "persons-by-age-app");
         config.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, 100);
 
+        StreamsBuilder builder = new StreamsBuilder();
+
+        KStream<String, Person> personStream = builder.stream("person-topic");
 
     }
 }
